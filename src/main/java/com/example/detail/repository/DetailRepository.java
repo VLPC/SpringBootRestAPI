@@ -19,4 +19,7 @@ public interface DetailRepository extends CrudRepository<Detail, Long> {
 
     @Override
     void delete(Detail entity);
+
+    @Override
+    void deleteById(Long aLong);
 }

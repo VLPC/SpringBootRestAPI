@@ -57,12 +57,7 @@ public class DetailController {
     }
 
     @DeleteMapping("delete/{id}")
-    public void deleteDetail(@PathVariable int id){
-        for (int i = 0; i < details.size(); i++){
-            Detail detail = details.get(i);
-            if (detail.getId() == id){
-                details.remove(detail);
-            }
-        }
+    public void deleteDetail(@PathVariable long id){
+        detailRepository.deleteById(id);
     }
 }
