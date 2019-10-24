@@ -1,0 +1,1 @@
+INSERT INTO details (id, article) VALUES ('1', 'article'), ('2', 'article1');
