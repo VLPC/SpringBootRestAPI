@@ -1,5 +1,8 @@
 package com.example.detail.controller;
 
+import com.example.detail.model.Detail;
+import com.example.detail.repository.DetailRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -8,6 +11,9 @@ import java.util.List;
 @RestController
 @RequestMapping("details")
 public class DetailController {
+
+    @Autowired
+    DetailRepository detailRepository;
 
     private List<Detail> details = new ArrayList<Detail>(){{
         add(new Detail(1, "detail1"));
