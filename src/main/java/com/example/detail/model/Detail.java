@@ -11,18 +11,17 @@ public class Detail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String article;
 
-    public Detail(int id, String article) {
-        this.id = id;
+    public Detail(String article) {
         this.article = article;
     }
 
     public Detail() {
     }
 
-    public int getId() {
+    public Long getId() {
         return this.id;
     }
 
@@ -32,7 +31,7 @@ public class Detail {
 
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
