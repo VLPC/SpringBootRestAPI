@@ -11,12 +11,8 @@ import java.util.List;
 @RequestMapping("details")
 public class DetailController {
 
-   private DetailService detailService;
-
-   @Autowired
-   public DetailController(DetailService detailService){
-       this.detailService = detailService;
-   }
+    @Autowired
+    private DetailService detailService;
 
     @GetMapping
     public Iterable<Detail> getAllDetails(){
