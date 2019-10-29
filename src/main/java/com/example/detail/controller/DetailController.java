@@ -5,7 +5,7 @@ import com.example.detail.service.DetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Calendar;
 
 @RestController
 @RequestMapping("details")
@@ -20,22 +20,22 @@ public class DetailController {
     }
 
     @GetMapping("{id}")
-    public Detail getDetail(@PathVariable int id){
-        return detailService.getDetailById(Long.valueOf(id));
+    public Detail getDetail(@PathVariable long id){
+        return detailService.getDetailById(id);
     }
 
     @PostMapping("/add")
-    public void createDetail(@RequestBody String article){
-        detailService.saveDetail(new Detail(article));
+    public void createDetail(@RequestBody String article, Calendar productionDate){
+        detailService.saveDetail(new Detail(article, productionDate));
     }
 
     @PutMapping("update/{id}")
-    public void updateDetail(@PathVariable int id, @RequestBody String article){
-        detailService.updateDetail(Long.valueOf(id), article);
+    public void updateDetail(@PathVariable long id, @RequestBody String article){
+        detailService.updateDetail(id, article);
     }
 
     @DeleteMapping("delete/{id}")
     public void deleteDetail(@PathVariable long id){
-        detailService.deleteDetail(Long.valueOf(id));
+        detailService.deleteDetail(id);
     }
 }
