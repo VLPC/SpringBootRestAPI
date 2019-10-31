@@ -1,9 +1,10 @@
 package com.example.detail.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.lang.NonNull;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 
@@ -13,10 +14,16 @@ public class Detail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String article;
-    private Calendar productionDate;
 
-    public Detail(String article, Calendar productionDate) {
+    @Column
+    @NonNull
+    private String article;
+
+    @NotNull
+    @Column(name = "prod")
+    private LocalDate productionDate;
+
+    public Detail(String article, LocalDate productionDate) {
         this.article = article;
         this.productionDate = productionDate;
     }
@@ -32,7 +39,7 @@ public class Detail {
         return this.article;
     }
 
-    public Calendar getProductionDate(){
+    public LocalDate getProductionDate() {
         return this.productionDate;
     }
 
@@ -44,7 +51,7 @@ public class Detail {
         this.article = article;
     }
 
-    public void setProductionDate(Calendar productionDate){
+    public void setProductionDate(LocalDate productionDate) {
         this.productionDate = productionDate;
     }
 }

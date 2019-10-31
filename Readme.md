@@ -1,4 +1,7 @@
-This is a simple service, provides common CRUD operations on details.
+This is a simple service, provides common CRUD operations.
+
+The main business purpose of service is to operating with collections of details. 
+Detail in this case is something can be used to create mechanism or auto.  
 
 
 # Running project

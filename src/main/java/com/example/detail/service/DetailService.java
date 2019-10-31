@@ -38,12 +38,12 @@ public class DetailService {
         List<Detail> list = new ArrayList<>();
         Iterator<Detail> iterator = iterable.iterator();
         Calendar currentDate = new GregorianCalendar();
-        while (iterator.hasNext()){
-            Detail detail = iterator.next();
-            if (currentDate.getWeekYear() - detail.getProductionDate().getWeekYear() > detailAge){
-                list.add(detail);
-            }
-        }
+//        while (iterator.hasNext()){
+//            Detail detail = iterator.next();
+//            if (currentDate.getWeekYear() - detail.getProductionDate().getWeekYear() > detailAge){
+//                list.add(detail);
+//            }
+//        }
         return list;
     }
 }

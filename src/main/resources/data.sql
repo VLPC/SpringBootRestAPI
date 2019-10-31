@@ -1,1 +1,1 @@
-INSERT INTO details (id, article) VALUES ('1', 'article'), ('2', 'article1');
+INSERT INTO details (id, article, prod) VALUES ('1', 'article', '2017-10-10'), ('2', 'article1', '2017-10-10');
