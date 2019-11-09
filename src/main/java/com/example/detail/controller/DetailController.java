@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("details")
@@ -24,9 +25,14 @@ public class DetailController {
         return detailService.getDetailById(id);
     }
 
+    @GetMapping("/prod/{year}")
+    public List<Detail> getArticles(@PathVariable int year){
+        return detailService.getDetailsByProd(year);
+    }
+
     @PostMapping("/add")
-    public void createDetail(@RequestBody String article, LocalDate productionDate) {
-        detailService.saveDetail(new Detail(article, productionDate));
+    public void createDetail(@RequestBody String article, LocalDate productionDate, int organisationId) {
+        detailService.saveDetail(new Detail(article, productionDate, organisationId));
     }
 
     @PutMapping("update/{id}")

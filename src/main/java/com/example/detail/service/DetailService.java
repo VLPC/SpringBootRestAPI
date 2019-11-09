@@ -5,7 +5,7 @@ import com.example.detail.repository.DetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
 
 @Service
 public class DetailService {
@@ -33,17 +33,7 @@ public class DetailService {
         return detailRepository.findAll();
     }
 
-    public List<Detail> detailAgeMoreThen(long detailAge){
-        Iterable<Detail> iterable = detailRepository.findAll();
-        List<Detail> list = new ArrayList<>();
-        Iterator<Detail> iterator = iterable.iterator();
-        Calendar currentDate = new GregorianCalendar();
-//        while (iterator.hasNext()){
-//            Detail detail = iterator.next();
-//            if (currentDate.getWeekYear() - detail.getProductionDate().getWeekYear() > detailAge){
-//                list.add(detail);
-//            }
-//        }
-        return list;
+    public List<Detail>  getDetailsByProd(int year){
+        return detailRepository.getDetailsByProd(year);
     }
 }

@@ -5,9 +5,6 @@ import org.springframework.lang.NonNull;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Entity(name = "detail")
@@ -17,17 +14,22 @@ public class Detail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
     @NonNull
+    @Column(name = "article")
     private String article;
 
     @NotNull
     @Column(name = "prod")
-    private LocalDate productionDate;
+    private LocalDate dateCreated;
 
-    public Detail(String article, LocalDate productionDate) {
+    @NotNull
+    @Column(name = "organisation_id")
+    private int organisationId;
+
+    public Detail(String article, LocalDate dateCreated, int organisationId) {
         this.article = article;
-        this.productionDate = productionDate;
+        this.dateCreated = dateCreated;
+        this.organisationId = organisationId;
     }
 
     public Detail() {
@@ -41,8 +43,8 @@ public class Detail {
         return this.article;
     }
 
-    public LocalDate getProductionDate() {
-        return this.productionDate;
+    public LocalDate getDateCreated() {
+        return this.dateCreated;
     }
 
     public void setId(long id) {
@@ -53,7 +55,15 @@ public class Detail {
         this.article = article;
     }
 
-    public void setProductionDate(LocalDate productionDate) {
-        this.productionDate = productionDate;
+    public void setDateCreated(LocalDate dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public void setOrganisationId(int organisationId) {
+        this.organisationId = organisationId;
+    }
+
+    public int getOrganisationId() {
+        return organisationId;
     }
 }
