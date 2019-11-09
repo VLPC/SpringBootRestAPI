@@ -3,6 +3,9 @@ package com.example.detail.controller;
 import com.example.detail.model.Detail;
 import com.example.detail.service.DetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -16,8 +19,10 @@ public class DetailController {
     private DetailService detailService;
 
     @GetMapping
-    public Iterable<Detail> getAllDetails() {
-        return detailService.findAll();
+    public ResponseEntity<Iterable<Detail>> getAllDetails() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Information", "all fucking details");
+        return new ResponseEntity<>(detailService.findAll(), headers, HttpStatus.OK);
     }
 
     @GetMapping("{id}")
