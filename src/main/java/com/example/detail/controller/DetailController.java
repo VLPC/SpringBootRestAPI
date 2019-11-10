@@ -3,6 +3,9 @@ package com.example.detail.controller;
 import com.example.detail.dto.DetailDto;
 import com.example.detail.model.Detail;
 import com.example.detail.service.DetailService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -36,6 +39,18 @@ public class DetailController {
         return new ResponseEntity<>(detailService.getDetailsByProd(year), HttpStatus.OK);
     }
 
+    /**
+     * Создание товара вручную
+     */
+    @ApiOperation(value = "Создание детали вручную. " )
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Деталь успешно создана"),
+            @ApiResponse(code = 500, message = "Произошла внутренняя ошибка"),
+            @ApiResponse(code = 401, message = "Информация об аутентификации отсутствует или недействительна"),
+            @ApiResponse(code = 403, message = "Действие не доступно для текущего пользователя"),
+            @ApiResponse(code = 404, message = "Данные не найдены"),
+            @ApiResponse(code = 422, message = "Некоторые значения некорректны")
+    })
     @PostMapping
     public ResponseEntity<Detail> createDetail(@RequestBody DetailDto detailDto) {
 
