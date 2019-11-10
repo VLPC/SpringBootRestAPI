@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class DetailService {
 
-    @Autowired
     private DetailRepository detailRepository;
+
+    @Autowired
+    public DetailService(DetailRepository detailRepository){
+        this.detailRepository = detailRepository;
+    }
 
     public Detail getDetailById(Long id) {
         return detailRepository.findById(id).get();
