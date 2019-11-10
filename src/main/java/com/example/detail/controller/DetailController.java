@@ -26,22 +26,22 @@ public class DetailController {
     }
 
     @GetMapping("{id}")
-    public Detail getDetail(@PathVariable long id) {
-        return detailService.getDetailById(id);
+    public ResponseEntity<Detail> getDetail(@PathVariable long id) {
+        return new ResponseEntity<>(detailService.getDetailById(id), HttpStatus.OK);
     }
 
     @GetMapping("/prod/{year}")
-    public List<Detail> getArticles(@PathVariable int year){
-        return detailService.getDetailsByProd(year);
+    public ResponseEntity<List<Detail>> getArticles(@PathVariable int year){
+        return new ResponseEntity<>(detailService.getDetailsByProd(year), HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public void createDetail(@RequestBody String article, LocalDate productionDate, int organisationId) {
-        detailService.saveDetail(new Detail(article, productionDate, organisationId));
+    public void createDetail(@RequestBody String article, LocalDate dateCreated) {
+        detailService.saveDetail(new Detail(article, dateCreated));
     }
 
     @PutMapping("update/{id}")
-    public void updateDetail(@PathVariable long id, @RequestBody String article) {
+    public void updateDetail(@PathVariable Long id, @RequestBody String article) {
         detailService.updateDetail(id, article);
     }
 

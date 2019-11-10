@@ -1,5 +1,6 @@
 package com.example.detail.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -12,30 +13,27 @@ public class Detail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NonNull
     @Column(name = "article")
     private String article;
 
     @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "prod")
     private LocalDate dateCreated;
 
-    @NotNull
-    @Column(name = "organisation_id")
-    private int organisationId;
 
-    public Detail(String article, LocalDate dateCreated, int organisationId) {
+    public Detail(String article, LocalDate dateCreated) {
         this.article = article;
         this.dateCreated = dateCreated;
-        this.organisationId = organisationId;
     }
 
     public Detail() {
     }
 
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 
@@ -47,7 +45,7 @@ public class Detail {
         return this.dateCreated;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -59,11 +57,4 @@ public class Detail {
         this.dateCreated = dateCreated;
     }
 
-    public void setOrganisationId(int organisationId) {
-        this.organisationId = organisationId;
-    }
-
-    public int getOrganisationId() {
-        return organisationId;
-    }
 }

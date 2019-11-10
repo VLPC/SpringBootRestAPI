@@ -25,7 +25,7 @@ public class DetailService {
         detailRepository.findById(id).get().setArticle(article);
     }
 
-    public void deleteDetail(Long id) {
+    public void deleteDetail(long id) {
         detailRepository.deleteById(id);
     }
 
