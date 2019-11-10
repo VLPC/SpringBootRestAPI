@@ -13,6 +13,11 @@ repositories {
 	mavenCentral()
 }
 
+wrapper {
+    gradleVersion = '6.0'
+    distributionType = Wrapper.DistributionType.ALL
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
@@ -20,7 +25,7 @@ dependencies {
     // https://mvnrepository.com/artifact/com.h2database/h2
     compile group: 'com.h2database', name: 'h2', version: '1.4.200'
 
-    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
 
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
