@@ -1,5 +1,6 @@
 package com.example.detail.controller;
 
+import com.example.detail.dto.DetailDto;
 import com.example.detail.model.Detail;
 import com.example.detail.service.DetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,16 @@ public class DetailController {
         return new ResponseEntity<>(detailService.getDetailsByProd(year), HttpStatus.OK);
     }
 
-    @PostMapping("/add")
-    public void createDetail(@RequestBody String article, LocalDate dateCreated) {
-        detailService.saveDetail(new Detail(article, dateCreated));
+    @PostMapping
+    public ResponseEntity<Detail> createDetail(@RequestBody DetailDto detailDto) {
+
+        // todo convert dto to entity with mapper
+        Detail newDetail = Detail.builder()
+                .article(detailDto.getArticle())
+                .dateCreated(detailDto.getDateCreated())
+                .build();
+
+        return ResponseEntity.ok(detailService.saveDetail(newDetail));
     }
 
     @PutMapping("update/{id}")

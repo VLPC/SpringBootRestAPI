@@ -20,11 +20,17 @@ dependencies {
     // https://mvnrepository.com/artifact/com.h2database/h2
     compile group: 'com.h2database', name: 'h2', version: '1.4.200'
 
+    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 }
 
 test {

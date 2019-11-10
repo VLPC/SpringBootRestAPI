@@ -17,8 +17,8 @@ public class DetailService {
         return detailRepository.findById(id).get();
     }
 
-    public void saveDetail(Detail detail) {
-        detailRepository.save(detail);
+    public Detail saveDetail(Detail detail) {
+        return detailRepository.save(detail);
     }
 
     public void updateDetail(Long id, String article) {

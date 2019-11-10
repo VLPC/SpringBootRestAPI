@@ -1,13 +1,16 @@
 package com.example.detail.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-
+@Data
+@Builder
 @Entity(name = "detail")
 public class Detail {
 
