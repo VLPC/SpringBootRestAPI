@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -55,10 +54,7 @@ public class DetailController {
     public ResponseEntity<Detail> createDetail(@RequestBody DetailDto detailDto) {
 
         // todo convert dto to entity with mapper
-        Detail newDetail = Detail.builder()
-                .article(detailDto.getArticle())
-                .dateCreated(detailDto.getDateCreated())
-                .build();
+        Detail newDetail = new Detail(detailDto.getArticle(), detailDto.getDateCreated());
 
         return ResponseEntity.ok(detailService.saveDetail(newDetail));
     }
