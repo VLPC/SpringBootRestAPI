@@ -25,8 +25,11 @@ public class DetailService {
         return detailRepository.save(detail);
     }
 
-    public void updateDetail(Long id, String article) {
-        detailRepository.findById(id).get().setArticle(article);
+    public Detail updateDetail(Long id, String article) {
+        Detail detail = detailRepository.findById(id).get();
+        detail.setArticle(article);
+        detailRepository.save(detail);
+        return detail;
     }
 
     public void deleteDetail(long id) {
@@ -37,7 +40,7 @@ public class DetailService {
         return detailRepository.findAll();
     }
 
-    public List<Detail>  getDetailsByProd(int year){
+    public Iterable<Detail>  getDetailsByProd(int year){
         return detailRepository.getDetailsByProd(year);
     }
 }

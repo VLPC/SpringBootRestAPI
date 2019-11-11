@@ -1,11 +1,13 @@
 package com.example.detail.controller;
 
 import com.example.detail.dto.DetailDto;
+import com.example.detail.mapper.Mapper;
 import com.example.detail.model.Detail;
 import com.example.detail.service.DetailService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,27 +23,28 @@ public class DetailController {
     @Autowired
     private DetailService detailService;
 
+    @Autowired
+    private Mapper mapper;
+
     @GetMapping
     public ResponseEntity<Iterable<Detail>> getAllDetails() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Information", "all fucking details");
-        return new ResponseEntity<>(detailService.findAll(), headers, HttpStatus.OK);
+        return ResponseEntity.ok(detailService.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<Detail> getDetail(@PathVariable long id) {
-        return new ResponseEntity<>(detailService.getDetailById(id), HttpStatus.OK);
+        return ResponseEntity.ok(detailService.getDetailById(id));
     }
 
     @GetMapping("/prod/{year}")
-    public ResponseEntity<List<Detail>> getArticles(@PathVariable int year){
-        return new ResponseEntity<>(detailService.getDetailsByProd(year), HttpStatus.OK);
+    public ResponseEntity<Iterable<Detail>> getArticles(@PathVariable int year){
+        return ResponseEntity.ok(detailService.getDetailsByProd(year));
     }
 
     /**
-     * Создание товара вручную
+     * Создание детали вручную
      */
-    @ApiOperation(value = "Создание детали вручную. " )
+    @ApiOperation(value = "Создание детали вручную.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Деталь успешно создана"),
             @ApiResponse(code = 500, message = "Произошла внутренняя ошибка"),
@@ -53,15 +56,14 @@ public class DetailController {
     @PostMapping
     public ResponseEntity<Detail> createDetail(@RequestBody DetailDto detailDto) {
 
-        // todo convert dto to entity with mapper
-        Detail newDetail = new Detail(detailDto.getArticle(), detailDto.getDateCreated());
+        Detail newDetail = mapper.toEntity(detailDto);
 
         return ResponseEntity.ok(detailService.saveDetail(newDetail));
     }
 
     @PutMapping("update/{id}")
-    public void updateDetail(@PathVariable Long id, @RequestBody String article) {
-        detailService.updateDetail(id, article);
+    public ResponseEntity<Detail> updateDetail(@PathVariable Long id, @RequestBody String article) {
+        return ResponseEntity.ok(detailService.updateDetail(id, article));
     }
 
     @DeleteMapping("delete/{id}")
