@@ -1,6 +1,7 @@
 package com.example.detail.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -20,7 +21,6 @@ public class Detail {
     private String article;
 
     @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "prod")
     private LocalDate dateCreated;
 

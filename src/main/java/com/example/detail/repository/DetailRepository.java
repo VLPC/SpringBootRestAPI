@@ -27,5 +27,5 @@ public interface DetailRepository extends CrudRepository<Detail, Long> {
     void deleteById(Long aLong);
 
     @Query(value = "SELECT * FROM detail WHERE YEAR (prod) > :year", nativeQuery = true)
-    List<Detail> getDetailsByProd(@Param("year") int year);
+    Iterable<Detail> getDetailsByProd(@Param("year") int year);
 }
