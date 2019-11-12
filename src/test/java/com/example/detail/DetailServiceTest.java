@@ -21,52 +21,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class DetailServiceTest {
 
-	@MockBean
-	DetailRepository detailRepository;
+    @MockBean
+    DetailRepository detailRepository;
 
-	@Autowired
-	DetailService detailService = new DetailService(detailRepository);
+    @Autowired
+    DetailService detailService = new DetailService(detailRepository);
 
-	@Autowired
-	Mapper mapper;
+    @DisplayName("Initial empty test")
+    @Test
+    void helloTest() {
+    }
 
-	@DisplayName("Initial empty test")
-	@Test
-	void helloTest() {
-	}
+    @Test
+    void shouldReturnEmptyOldListDetails_whenThereIsOnlyNewDetails() {
 
-	@Test
-	void shouldReturnEmptyOldListDetails_whenThereIsOnlyNewDetails() {
+        Mockito.when(detailRepository.getDetailsByProd(Mockito.anyInt()))
+                .thenReturn(new ArrayList<>());
 
-		Mockito.when(detailRepository.getDetailsByProd(Mockito.anyInt()))
-				.thenReturn(new ArrayList<>());
+        Iterable<Detail> oldDetails = detailService.getDetailsByProd(2017);
 
-		Iterable<Detail> oldDetails = detailService.getDetailsByProd(2017);
-
-		//Assertions.assertEquals(0, oldDetails.size());
-	}
-
-	@Test
-	void whenConvertEntityToDto_thenCorrect() {
-
-		Detail detail = new Detail("article_test", LocalDate.of(2019,11,12));
-
-		DetailDto detailDto = mapper.toDto(detail);
-
-		assertEquals(detail.getArticle(), detailDto.getArticle());
-		assertEquals(detail.getDateCreated(), detailDto.getDateCreated());
-
-	}
-
-	@Test
-	void whenConvertDtoToEntity_thenCorrect() {
-
-		DetailDto detailDto = new DetailDto("article", LocalDate.of(2019,11,11));
-
-		Detail detail =mapper.toEntity(detailDto);
-
-		assertEquals(detailDto.getArticle(), detail.getArticle());
-		assertEquals(detailDto.getDateCreated(), detail.getDateCreated());
-
-	}
+        //Assertions.assertEquals(0, oldDetails.size());
+    }
 }

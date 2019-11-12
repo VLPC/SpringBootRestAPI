@@ -12,11 +12,11 @@ public class Mapper {
     @Autowired
     ModelMapper modelMapper;
 
-    public Detail toEntity(DetailDto detailDto){
+    public Detail toEntity(DetailDto detailDto) {
         return modelMapper.map(detailDto, Detail.class);
     }
 
-    public DetailDto toDto(Detail detail){
-        return modelMapper.map(detail, DetailDto.class);
+    public DetailDto toDto(Detail detail) {
+        return new DetailDto(detail.getArticle(), detail.getDateCreated());
     }
 }
