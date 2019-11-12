@@ -7,6 +7,8 @@ import com.example.detail.repository.DetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DetailService {
 
@@ -43,7 +45,7 @@ public class DetailService {
         return detailRepository.findAll();
     }
 
-    public Iterable<Detail>  getDetailsByProd(int year){
+    public List<Detail> getDetailsByProd(int year){
         return detailRepository.getDetailsByProd(year);
     }
 }

@@ -1,20 +1,17 @@
 package com.example.detail;
 
-import com.example.detail.dto.DetailDto;
-import com.example.detail.mapper.Mapper;
 import com.example.detail.model.Detail;
 import com.example.detail.repository.DetailRepository;
 import com.example.detail.service.DetailService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -38,8 +35,8 @@ class DetailServiceTest {
         Mockito.when(detailRepository.getDetailsByProd(Mockito.anyInt()))
                 .thenReturn(new ArrayList<>());
 
-        Iterable<Detail> oldDetails = detailService.getDetailsByProd(2017);
+        List<Detail> oldDetails = detailService.getDetailsByProd(2017);
 
-        //Assertions.assertEquals(0, oldDetails.size());
+        assertEquals(0, oldDetails.size());
     }
 }
