@@ -1,20 +1,14 @@
 package com.example.detail.controller;
 
 import com.example.detail.dto.DetailDto;
-import com.example.detail.mapper.Mapper;
 import com.example.detail.model.Detail;
 import com.example.detail.service.DetailService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("details")
@@ -22,9 +16,6 @@ public class DetailController {
 
     @Autowired
     private DetailService detailService;
-
-    @Autowired
-    private Mapper mapper;
 
     @GetMapping
     public ResponseEntity<Iterable<Detail>> getAllDetails() {
@@ -55,10 +46,7 @@ public class DetailController {
     })
     @PostMapping
     public ResponseEntity<Detail> createDetail(@RequestBody DetailDto detailDto) {
-
-        Detail newDetail = mapper.toEntity(detailDto);
-
-        return ResponseEntity.ok(detailService.saveDetail(newDetail));
+        return ResponseEntity.ok(detailService.saveDetail(detailDto));
     }
 
     @PutMapping("update/{id}")

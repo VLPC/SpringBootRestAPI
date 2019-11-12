@@ -3,7 +3,6 @@ package com.example.detail;
 import com.example.detail.model.Detail;
 import com.example.detail.repository.DetailRepository;
 import com.example.detail.service.DetailService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -12,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootTest
 class DetailServiceTest {
