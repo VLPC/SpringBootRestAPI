@@ -1,14 +1,17 @@
 package com.example.detail.service;
 
+import com.example.detail.dto.DetailDto;
+import com.example.detail.mapper.Mapper;
 import com.example.detail.model.Detail;
 import com.example.detail.repository.DetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class DetailService {
+
+    @Autowired
+    private Mapper mapper;
 
     private DetailRepository detailRepository;
 
@@ -21,8 +24,8 @@ public class DetailService {
         return detailRepository.findById(id).get();
     }
 
-    public Detail saveDetail(Detail detail) {
-        return detailRepository.save(detail);
+    public Detail saveDetail(DetailDto detailDto) {
+        return detailRepository.save(mapper.toEntity(detailDto));
     }
 
     public Detail updateDetail(Long id, String article) {

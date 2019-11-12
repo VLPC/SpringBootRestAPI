@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Mapper {
 
-    private ModelMapper modelMapper = new ModelMapper();
+    @Autowired
+    ModelMapper modelMapper;
 
     public Detail toEntity(DetailDto detailDto){
         return modelMapper.map(detailDto, Detail.class);
